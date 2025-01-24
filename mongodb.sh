@@ -1,4 +1,4 @@
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp mongod.conf /etc/yum.repos.d/mongod.conf
 dnf install mongodb-org -y
 sed -i -e 's|127.0.0.1|0.0.0.0|' /etc/mongod.conf
 systemctl enable mongod
