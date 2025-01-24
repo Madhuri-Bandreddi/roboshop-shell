@@ -28,3 +28,4 @@ echo -e "\e[36m >>>>>> start user service <<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable user
 systemctl restart user
+

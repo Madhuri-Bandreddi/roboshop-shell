@@ -14,3 +14,4 @@ systemctl start shipping
 dnf install mysql -y
 mysql -h mysql.madhari123.shop -uroot -pRoboShop@1 < /app/schema/shipping.sql
 systemctl restart shipping
+

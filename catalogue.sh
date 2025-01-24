@@ -37,4 +37,3 @@ dnf install mongodb-org-shell -y
 
 echo -e "\e[36m >>>>>> Load schema <<<<<<\e[0m"
 mongo --host monogdb.madhari123.shop </app/schema/catalogue.js
-
