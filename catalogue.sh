@@ -8,7 +8,7 @@ echo -e "\e[36m >>>>>> Install Nodejs <<<<<<\e[0m"
 dnf install nodejs -y
 
 echo -e "\e[36m >>>>>> Add Application user <<<<<<\e[0m"
-useradd roboshop
+useradd ${app_user}
 
 echo -e "\e[36m >>>>>> Create application directory <<<<<<\e[0m"
 rm -rf /app
@@ -29,7 +29,7 @@ systemctl daemon-reload
 systemctl enable catalogue
 
 echo -e "\e[36m >>>>>> restart catalogue service <<<<<<\e[0m"
-systemctl start catalogue
+systemctl restart catalogue
 
 echo -e "\e[36m >>>>>> copy mongodb repo <<<<<<\e[0m"
 cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
