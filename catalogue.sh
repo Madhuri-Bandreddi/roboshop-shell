@@ -27,6 +27,8 @@ npm install
 echo -e "\e[36m >>>>>> start catalogue service <<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable catalogue
+
+echo -e "\e[36m >>>>>> restart catalogue service <<<<<<\e[0m"
 systemctl restart catalogue
 
 echo -e "\e[36m >>>>>> copy mongodb repo <<<<<<\e[0m"
