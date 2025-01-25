@@ -21,7 +21,7 @@ unzip /tmp/catalogue.zip
 echo -e "\e[32m >>>>>> Install Nodejs dependencies <<<<<<\e[0m"
 npm install
 
-echo -e "\e[36m >>>>>> Copy Catalogue Service file <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Copy Catalogue Systemd file <<<<<<\e[0m"
 cp /root/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[36m >>>>>> start catalogue service <<<<<<\e[0m"
