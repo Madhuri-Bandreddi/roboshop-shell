@@ -1,8 +1,6 @@
 echo -e "\e[36m >>>>>> configuring Nodejs repos <<<<<<\e[0m"
 curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
 
-
-
 echo -e "\e[36m >>>>>> Install Nodejs <<<<<<\e[0m"
 dnf install nodejs -y
 
