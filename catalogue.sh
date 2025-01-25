@@ -1,5 +1,5 @@
 echo -e "\e[36m >>>>>> configuring Nodejs repos <<<<<<\e[0m"
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_18.x |  bash
 
 
 echo -e "\e[36m >>>>>> Install Nodejs <<<<<<\e[0m"
