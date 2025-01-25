@@ -1,6 +1,9 @@
 echo -e "\e[36m >>>>>> configuring Nodejs repos <<<<<<\e[0m"
 curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
 
+echo -e "\e[36m >>>>>> Copy Catalogue Systemd file <<<<<<\e[0m"
+cp /root/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
+
 echo -e "\e[36m >>>>>> Install Nodejs <<<<<<\e[0m"
 dnf install nodejs -y
 
@@ -20,9 +23,6 @@ unzip /tmp/catalogue.zip
 
 echo -e "\e[32m >>>>>> Install Nodejs dependencies <<<<<<\e[0m"
 npm install
-
-echo -e "\e[36m >>>>>> Copy Catalogue Systemd file <<<<<<\e[0m"
-cp /root/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[36m >>>>>> start catalogue service <<<<<<\e[0m"
 systemctl daemon-reload
