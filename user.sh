@@ -1,13 +1,11 @@
 echo -e "\e[36m >>>>>> configuring Nodejs repos <<<<<<\e[0m"
 curl -sl https://rpm.nodesource.com /setup_lts.x | bash bash -
 
-
 echo -e "\e[36m >>>>>> Install Nodejs <<<<<<\e[0m"
 dnf install nodejs -y
 
 echo -e "\e[36m >>>>>> Add Application user <<<<<<\e[0m"
 useradd ${app_user}
-
 
 echo -e "\e[36m >>>>>> Create application directory <<<<<<\e[0m"
 rm -rf /app
@@ -29,5 +27,5 @@ cp /root/roboshop-shell/user.service /etc/systemd/system/user.service
 echo -e "\e[36m >>>>>> start user service <<<<<<\e[0m"
 systemctl daemon-reload
 systemctl enable user
-systemctl restart user
+systemctl restart user ; tail /var/log/messages
 
