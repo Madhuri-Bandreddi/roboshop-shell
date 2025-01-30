@@ -1,5 +1,5 @@
 dnf install python36 gcc python3-devel -y
-cp /root/roboshop-shell/payment.service /etc/systemd/system/payment.service
+cp ${script_path}/payment.service /etc/systemd/system/payment.service
 useradd roboshop
 mkdir /app
 curl -L -o /tmp/payment.zip https://roboshop-artifacts.s3.amazonaws.com/payment.zip
