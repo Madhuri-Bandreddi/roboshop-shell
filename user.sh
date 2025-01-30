@@ -1,5 +1,6 @@
 echo -e "\e[36m >>>>>> configuring Nodejs repos <<<<<<\e[0m"
-curl -sl https://rpm.nodesource.com /setup_lts.x | bash
+curl -sl https://rpm.nodesource.com /setup_lts.x | bash bash -
+
 
 echo -e "\e[36m >>>>>> Install Nodejs <<<<<<\e[0m"
 dnf install nodejs -y
