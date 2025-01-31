@@ -117,8 +117,7 @@ func_python() {
 
   func_app_prereq
   func_print_head "Install Python Dependencies"
-#pip3.6 install -r requirements.txt &>>$log_file
-  pip3.6 install -r requirements.txt &>> $log_file
+  pip3.6 install -r requirements.txt &>>$log_file
 
   func_stat_check $?
 
