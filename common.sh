@@ -70,7 +70,7 @@ func_systemd_setup() {
 
   func_print_head "Start ${component} Service"
   systemctl daemon-reload &>>$log file
-  systemctl enable ${component } &>$1og_file
+  systemctl enable ${component } &>$log_file
   systemctl restart ${component} &>>$log_file
   func_stat_check $?
 }
@@ -87,7 +87,7 @@ func_nodejs () {
   func_app_prereq
 
   func_print_head "Install NodeJS Dependencies"
-  npm install &>>$1og_file
+  npm install &>>$log_file
   func_stat_check $?
 
   func_schema_setup
@@ -101,7 +101,7 @@ func_java() {
   func_app_prereq
 
   func_print_head "Download Maven Dependencies"
-  mvn clean package &>>$1og_file
+  mvn clean package &>>$log_file
   func_stat_check $?
   mv target/${component}-1.0.jar ${component}. jar &>>$log_file
 
