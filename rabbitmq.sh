@@ -9,7 +9,7 @@
 
 script=$(realpath "$0")
 script_path=$(dirname "$script")
-source ${script_path}/common. sh
+source ${script_path}/common.sh
 rabbitmq_appuser_password=$1
 
 if [ -z "$rabbitmq_appuser_password" ]; then
@@ -26,7 +26,7 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/sc
 func_stat_check $?
 
 func_print_head "Install ErLang & RabbitMQ"
-yum install erlang rabbitmq-server -y &>>$log file
+yum install erlang rabbitmq-server -y &>>$log_file
 func_stat_check $?
 
 func_print_head "Start RabbitMQ Service"
@@ -35,6 +35,6 @@ systemctl restart rabbitmq-server &>>$log_file
 func_stat_check $?
 
 func_print_head "Add Application User in RabbtimQ"
-rabbitmqctl add_user roboshop ${rabbitmq appuser password} &>>$log file
+rabbitmqctl add_user roboshop ${rabbitmq appuser password} &>>$log_file
 rabbitmqctl set_permissions -p / roboshop " .* " " .* " " .* " &>>$log_file
 func_stat_check $?
