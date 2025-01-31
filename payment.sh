@@ -23,4 +23,4 @@ exit
 fi
 
 component=payment
-fonc_python
+func_python
