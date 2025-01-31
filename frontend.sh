@@ -12,7 +12,7 @@ script_path=$(dirname "$script")
 source ${script_path}/common.sh
 
 func_print_head "Install Nginx"
-yum install nginx -y &>>$log file
+yum install nginx -y &>>$log_file
 func_stat_check $?
 
 func_print_head "Copy roboshop Config file"
