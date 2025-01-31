@@ -38,7 +38,7 @@ func_schema_setup() {
   yum install mysql -y &>>$log_file
   func_stat_check $?
 
-  func_print_head "Load Schema'
+  func_print_head "Load Schema"
   mysql -h mysql-dev.rdevopsb72.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
   func_stat_check $?
   fi
@@ -93,6 +93,7 @@ func_nodejs () {
   func_schema_setup
   func_systemd_setup
 }
+
 func_java() {
   func_print_head "Install Maven"
   yum install maven -y &>>$log_file
@@ -103,7 +104,7 @@ func_java() {
   func_print_head "Download Maven Dependencies"
   mvn clean package &>>$log_file
   func_stat_check $?
-  mv target/${component}-1.0.jar ${component}. jar &>>$log_file
+  mv target/${component}-1.0.jar ${component}.jar &>>$log_file
 
   func_schema_setup
   func_systemd_setup
