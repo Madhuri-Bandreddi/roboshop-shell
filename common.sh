@@ -94,7 +94,7 @@ func_nodejs () {
   func_systemd_setup
 }
 
-func_java() {
+func_java(){
   func_print_head "Install Maven"
   yum install maven -y &>>$log_file
   func_stat_check $?
