@@ -18,11 +18,11 @@ if [ -z "$rabbitmq_appuser_password" ]; then
 fi
 
 func_print_head "Setup ErLang Repos"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log file
+curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
 func_stat_check $?
 
 func_print_head "Setup RabbitMQ Repos"
-curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log file
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash &>>$log_file
 func_stat_check $?
 
 func_print_head "Install ErLang & RabbitMQ"
