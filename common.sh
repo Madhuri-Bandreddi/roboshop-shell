@@ -86,7 +86,8 @@ func_nodejs(){
   func_stat_check $?
 
   func_print_head  "Install Nodejs  repos"
-  dnf install nodejs -y &>>$log_file
+#  dnf install nodejs -y &>>$log_file
+  yum install -y nodejs &>>$log_file
   func_stat_check $?
 
   func_app_prereq
