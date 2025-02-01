@@ -17,7 +17,7 @@ if [ -z "$mysql_root_password" ]; then
 fi
 
 func_print_head "Disable MySQL 8 Version"
-dnf module disable mysql -y &>>$log_file
+yum module disable mysql -y &>>$log_file
 func_stat_check $?
 
 func_print_head "Copy MySQL Repo File"
