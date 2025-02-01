@@ -14,7 +14,7 @@ func_stat_check() {
     echo -e "\e[32mSUCCESS\e[Øm"
   else
     echo -e "\e[31mFAILURE\e[Øm"
-    echo "Refer the log_file /tmp/roboshop.log for more information"
+    echo "Refer the log file /tmp/roboshop.log for more information"
     exit 1
   fi
 }
@@ -30,7 +30,7 @@ func_schema_setup() {
     func_stat_check $?
 
     func_print_head "Load Schema"
-    mongo -- host mongodb-dev. rdevopsb72. online </app/schema/${component}. js &>>$log_file
+    mongo -- host monogdb.madhari123.shop </app/schema/${component}.js &>>$log_file
     func_stat_check $?
   fi
   if [ "${schema_setup}" == "mysql" ]; then
@@ -39,7 +39,7 @@ func_schema_setup() {
   func_stat_check $?
 
   func_print_head "Load Schema"
-  mysql -h mysql-dev.rdevopsb72.online -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
+  mysql -h mysql.madhari123.shop -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
   func_stat_check $?
   fi
 }
@@ -70,7 +70,7 @@ func_systemd_setup() {
 
   func_print_head "Start ${component} Service"
   systemctl daemon-reload &>>$log_file
-  systemctl enable ${component } &>$log_file
+  systemctl enable ${component} &>$log_file
   systemctl restart ${component} &>>$log_file
   func_stat_check $?
 }
