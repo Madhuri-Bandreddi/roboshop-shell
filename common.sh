@@ -8,7 +8,7 @@ func_print_head(){
   echo -e "\e[36m >>>>>>>> $* <<<<"
   echo -e "\e[36m >>>>>>>> $* <<<<" &>>$log_file
 }
-func_stat_check(){
+func_stat_check (){
   if [ $1 -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
   else
@@ -19,17 +19,17 @@ func_stat_check(){
 }
 
 func_schema_setup(){
- if [ "$schema_setup" == "mongo" ] ; then
+ if [ "$ schema_setup" == "mongo" ] ; then
    func_print_head "Copy MongoDB repo"
    cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
    func_stat_check $?
 
-   func_print_head "Install MongoDB Client"
+   func_print_head Install  "MongoDB Client"
    dnf install mongodb-org-shell -y &>>$log_file
    func_stat_check $?
 
    func_print_head "Load Schema "
-   mongo --host mongodb.madhari123.shop </app/schema/${component} &>>$log_file
+   mongo --host mongodb-dev.rajasekhar72.store </app/schema/${component} &>>$log_file
    func_stat_check $?
  fi
  if [ "${schema_setup}" == "mysql" ]; then
@@ -38,14 +38,11 @@ func_schema_setup(){
    func_stat_check $?
 
    func_print_head  "Load Schema"
-   mysql -h mysql.madhari123.shop  -uroot -p$mysql_root_password < /app/schema/${component}.sql &>>$log_file
+   mysql -h mysql-dev.rajasekhar72.store  -uroot -p$mysql_root_password < /app/schema/${component}.sql &>>$log_file
    func_stat_check $?
  fi
 
 }
-
-#    mongo -- host monogdb.madhari123.shop </app/schema/${component}.js &>>$log_file
-#  mysql -h mysql.madhari123.shop -uroot -p${mysql_root_password} < /app/schema/shipping.sql &>>$log_file
 
 func_app_prereq(){
   func_print_head "Create Application User"
@@ -84,14 +81,13 @@ func_systemd_setup(){
 
 }
 func_nodejs(){
-  func_print_head "configuring nodejs  repos"
+  func_print_head  "configuring nodejs  repos"
   curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash - &>>$log_file
   func_stat_check $?
 
   func_print_head  "Install Nodejs  repos"
   dnf install nodejs -y &>>$log_file
   func_stat_check $?
-
 
   func_app_prereq
 
@@ -103,6 +99,7 @@ func_nodejs(){
   func_systemd_setup
 
 }
+
 func_java(){
   func_print_head "Install Maven"
   yum install maven -y &>>$log_file
