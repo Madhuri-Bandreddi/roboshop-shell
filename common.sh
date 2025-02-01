@@ -19,7 +19,7 @@ func_stat_check(){
 }
 
 func_schema_setup(){
- if [ "$ schema_setup" == "mongo" ] ; then
+ if [ "$schema_setup" == "mongo" ] ; then
    func_print_head "Copy MongoDB repo"
    cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
    func_stat_check $?
