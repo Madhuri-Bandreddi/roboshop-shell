@@ -20,7 +20,7 @@ func_stat_check() {
 }
 
 func_schema_setup() {
-  if [ "$schema setup" == "mongo" ]; then
+  if [ "$schema_setup" == "mongo" ]; then
     func_print_head "Copy MongoDB repo"
     cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
     func_stat_check $?
@@ -122,7 +122,7 @@ func_python() {
   func_stat_check $?
 
   func_print_head "Update Passwords in System Service file"
-  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq appuser password}|" ${script_path}/payment.service &>>$log_file
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service &>>$log_file
   func_stat_check $?
 
   func_systemd_setup
