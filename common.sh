@@ -14,7 +14,7 @@ func_stat_check() {
     echo -e "\e[32mSUCCESS\e[Øm"
   else
     echo -e "\e[31mFAILURE\e[Øm"
-    echo "Refer the log file /tmp/roboshop.log for more information"
+    echo "Refer the log_file /tmp/roboshop.log for more information"
     exit 1
   fi
 }
