@@ -116,7 +116,7 @@ func_java() {
   func_systemd_setup
 }
 
-func_python(){
+func_python() {
   func_print_head  "Install Python"
   dnf install python36 gcc python3-devel -y &>>$log_file
   func_stat_check $?
@@ -127,12 +127,9 @@ func_python(){
   pip3.6 install -r requirements.txt &>>$log_file
   func_stat_check $?
 
-
-
   func_print_head "UPDATE PASSWORD Setup SystemD Service"
   sed -i -e "s/rabbitmq_appuser_password|${rabbitmq_appuser_password}" ${script_path}/payment.service &>>$log_file
   func_stat_check $?
 
   func_systemd_setup
-
 }
