@@ -17,6 +17,7 @@ if [ -z "$rabbitmq_appuser_password" ]; then
   exit
 fi
 
+
 func_print_head "Setup ErLang Repos"
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
 func_stat_check $?
