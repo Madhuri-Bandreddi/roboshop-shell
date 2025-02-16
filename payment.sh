@@ -5,7 +5,7 @@ rabbitmq_appuser_password=$1
 
 if [ -z "$rabbitmq_appuser_password" ]; then
   echo Input Roboshop Appuser Password Missing
-  exit 1
+  exit
 fi
 
 component=payment
