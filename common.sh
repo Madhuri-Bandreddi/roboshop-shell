@@ -29,7 +29,8 @@ func_schema_setup() {
    func_stat_check $?
 
    func_print_head "Load Schema "
-   mongo --host monogdb.madhari123.shop </app/schema/${component} &>>$log_file
+  # mongo --host monogdb.madhari123.shop </app/schema/${component} &>>$log_file
+   mongo --host mongodb.madhari123.shop < /app/schema/${component} >> $log_file 2>&1
    func_stat_check $?
  fi
  if [ "${schema_setup}" == "mysql" ]; then
@@ -128,7 +129,8 @@ func_python() {
   func_stat_check $?
 
   func_print_head "UPDATE PASSWORD Setup SystemD Service"
-  sed -i -e "s/rabbitmq_appuser_password|${rabbitmq_appuser_password}" ${script_path}/payment.service &>>$log_file
+  #sed -i -e "s/rabbitmq_appuser_password|${rabbitmq_appuser_password}" ${script_path}/payment.service &>>$log_file
+  sed -i -e "s/rabbitmq_appuser_password/${rabbitmq_appuser_password}/" ${script_path}/payment.service >> $log_file 2>&1
   func_stat_check $?
 
   func_systemd_setup
