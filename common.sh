@@ -29,8 +29,7 @@ func_schema_setup() {
    func_stat_check $?
 
    func_print_head "Load Schema "
-  # mongo --host monogdb.madhari123.shop </app/schema/${component} &>>$log_file
-   mongo --host mongodb.madhari123.shop < /app/schema/${component} >> $log_file 2>&1
+   mongo --host mongodb.madhari123.shop </app/schema/${component} &>>$log_file
    func_stat_check $?
  fi
  if [ "${schema_setup}" == "mysql" ]; then
