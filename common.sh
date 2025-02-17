@@ -4,11 +4,11 @@ script_path=$(dirname "$script")
 log_file=/tmp/roboshop.log
 # rm -f $log_file
 
-func_print_head() {
+func_print_head(){
   echo -e "\e[36m >>>>>>>> $* <<<<"
   echo -e "\e[36m >>>>>>>> $* <<<<" &>>$log_file
 }
-func_stat_check () {
+func_stat_check (){
   if [ $1 -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
   else
@@ -18,8 +18,8 @@ func_stat_check () {
   fi
 }
 
-func_schema_setup() {
- if [ "$schema_setup" == "mongo" ] ; then
+func_schema_setup(){
+ if [ "$ schema_setup" == "mongo" ] ; then
    func_print_head "Copy MongoDB repo"
    cp ${script_path}/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
    func_stat_check $?
@@ -29,21 +29,22 @@ func_schema_setup() {
    func_stat_check $?
 
    func_print_head "Load Schema "
-   mongo --host mongodb.madhari123.shop </app/schema/${component} &>>$log_file
+   mongo --host mongodb-dev.rajasekhar72.store </app/schema/${component} &>>$log_file
    func_stat_check $?
  fi
- if [ "${schema_setup}" == "mysql" ]; then
+ if [ "$ schema_setup" == "mysql" ]; then
    func_print_head  "INSTALL MYSQL client"
    dnf install mysql -y &>>$log_file
    func_stat_check $?
 
    func_print_head  "Load Schema"
-   mysql -h mysql.madhari123.shop  -uroot -p$mysql_root_password < /app/schema/${component}.sql &>>$log_file
+   mysql -h mysql-dev.madhari123.shop  -uroot -p$mysql_root_password < /app/schema/${component}.sql &>>$log_file
    func_stat_check $?
  fi
+
 }
 
-func_app_prereq() {
+func_app_prereq(){
   func_print_head "Create Application User"
   id ${app_user} &>>/tmp/roboshop.log
   if [ $? -ne 0 ]; then
@@ -67,7 +68,7 @@ func_app_prereq() {
   func_stat_check $?
 }
 
-func_systemd_setup() {
+func_systemd_setup(){
   func_print_head "Setup Systemd Service"
   cp ${script_path}/${component}.service /etc/systemd/system/${component}.service &>>$log_file
   func_stat_check $?
@@ -79,27 +80,27 @@ func_systemd_setup() {
   func_stat_check $?
 
 }
-
-func_nodejs() {
-  func_print_head "Configuring Node.js Repos"
-  curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash - &>>$log_file
+func_nodejs(){
+  func_print_head  "configuring nodejs  repos"
+  curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash - &>>$log_file
   func_stat_check $?
 
-  func_print_head "Install Node.js"
+  func_print_head  "Install Nodejs  repos"
   dnf install nodejs -y &>>$log_file
   func_stat_check $?
 
   func_app_prereq
 
-  func_print_head "Install NodeJS Dependencies"
+  func_print_head  "Install   NodeJS  Dependencies"
   npm install &>>$log_file
   func_stat_check $?
 
   func_schema_setup
   func_systemd_setup
+
 }
 
-func_java() {
+func_java(){
   func_print_head "Install Maven"
   yum install maven -y &>>$log_file
   func_stat_check $?
@@ -116,7 +117,7 @@ func_java() {
   func_systemd_setup
 }
 
-func_python() {
+func_python(){
   func_print_head  "Install Python"
   dnf install python36 gcc python3-devel -y &>>$log_file
   func_stat_check $?
@@ -127,10 +128,12 @@ func_python() {
   pip3.6 install -r requirements.txt &>>$log_file
   func_stat_check $?
 
+
+
   func_print_head "UPDATE PASSWORD Setup SystemD Service"
-  #sed -i -e "s/rabbitmq_appuser_password|${rabbitmq_appuser_password}" ${script_path}/payment.service &>>$log_file
-  sed -i -e "s/rabbitmq_appuser_password/${rabbitmq_appuser_password}/" ${script_path}/payment.service >> $log_file 2>&1
+  sed -i -e "s|rabbitmq_appuser_password|${rabbitmq_appuser_password}|" ${script_path}/payment.service &>>$log_file
   func_stat_check $?
 
   func_systemd_setup
+
 }
