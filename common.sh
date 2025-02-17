@@ -29,7 +29,7 @@ func_schema_setup(){
    func_stat_check $?
 
    func_print_head "Load Schema "
-   mongo --host mongodb-dev.rajasekhar72.store </app/schema/${component} &>>$log_file
+   mongo --host mongodb.madhari123.shop </app/schema/${component} &>>$log_file
    func_stat_check $?
  fi
  if [ "$ schema_setup" == "mysql" ]; then
@@ -38,7 +38,7 @@ func_schema_setup(){
    func_stat_check $?
 
    func_print_head  "Load Schema"
-   mysql -h mysql-dev.madhari123.shop  -uroot -p$mysql_root_password < /app/schema/${component}.sql &>>$log_file
+   mysql -h mysql.madhari123.shop  -uroot -p$mysql_root_password < /app/schema/${component}.sql &>>$log_file
    func_stat_check $?
  fi
 
